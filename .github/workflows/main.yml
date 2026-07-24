@@ -1,0 +1,29 @@
+name: Duolingo Streak Saver
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  save-streak:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install requests
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Run Script
+      env:
+        DUOLINGO_USERNAME: ${{ secrets.DUOLINGO_USERNAME }}
+        DUOLINGO_PASSWORD: ${{ secrets.DUOLINGO_PASSWORD }}
+      run: python duolingo.py
