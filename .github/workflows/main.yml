@@ -1,6 +1,9 @@
 name: Duolingo Streak Saver
 
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron: '0 */3 * * *'
   workflow_dispatch:
@@ -27,3 +30,4 @@ jobs:
         DUOLINGO_USERNAME: ${{ secrets.DUOLINGO_USERNAME }}
         DUOLINGO_PASSWORD: ${{ secrets.DUOLINGO_PASSWORD }}
       run: python duolingo.py
+
