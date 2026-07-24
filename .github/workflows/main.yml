@@ -26,4 +26,4 @@ jobs:
       env:
         DUOLINGO_USERNAME: ${{ secrets.DUOLINGO_USERNAME }}
         DUOLINGO_PASSWORD: ${{ secrets.DUOLINGO_PASSWORD }}
-      run: python main.py
+      run: python duolingo.py
